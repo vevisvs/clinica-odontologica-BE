@@ -1,9 +1,11 @@
 package com.example.javaproject.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
+
 
 @Entity
 @Getter
@@ -11,7 +13,7 @@ import javax.persistence.*;
 
 @Table(name = "Odontologos")
 
-
+@AllArgsConstructor
 @NoArgsConstructor
 
 public class Odontologo {
@@ -19,11 +21,11 @@ public class Odontologo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
-    private Integer matricula;
-    @Column
     private String nombre;
     @Column
     private String apellido;
+    @Column
+    private Integer matricula;
 
     /*
     //el odontologo tiene varios turnos

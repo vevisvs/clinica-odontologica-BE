@@ -30,7 +30,7 @@ public class PacienteController {
     }
 
     //Agregar paciente (POST)
-    @PostMapping("/nuevosPaciente")
+    @PostMapping("/nuevosPacientes")
     public ResponseEntity<Paciente> agregar(@RequestBody Paciente paciente)  {
         try {
             pacienteService.agregar(paciente);
@@ -47,7 +47,7 @@ public class PacienteController {
     }
 
     //Eliminar paciente (DELETE)
-    @DeleteMapping("/eliminarPaciente")
+    @DeleteMapping("/eliminarPaciente/{id}")
     public ResponseEntity<?> eliminar(@PathVariable int id) throws ResourceNotFoundException {
         ResponseEntity response = null;
         if (pacienteService.getById(id) == null) {

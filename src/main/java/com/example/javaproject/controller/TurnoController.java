@@ -3,6 +3,7 @@ package com.example.javaproject.controller;
 import com.example.javaproject.entity.Turno;
 import com.example.javaproject.exception.ResourceNotFoundException;
 import com.example.javaproject.service.TurnoService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+@RestController
+@AllArgsConstructor
 public class TurnoController {
 
     private TurnoService turnoService;
@@ -45,7 +48,7 @@ public class TurnoController {
 
 
     //Eliminar turno (DELETE)
-    @DeleteMapping("/eliminarTurno")
+    @DeleteMapping("/eliminarTurno/{id}")
     public ResponseEntity<?> eliminarTurno (@PathVariable int id) throws ResourceNotFoundException {
         ResponseEntity response = null;
         if (turnoService.getById(id) == null) {

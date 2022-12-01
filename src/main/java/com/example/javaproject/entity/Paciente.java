@@ -2,6 +2,7 @@ package com.example.javaproject.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,8 +11,10 @@ import java.time.LocalDate;
     @Entity
     @Getter
     @Setter
-    @AllArgsConstructor
     @Table(name = "Pacientes")
+    @AllArgsConstructor
+    @NoArgsConstructor
+
     public class Paciente {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +24,7 @@ import java.time.LocalDate;
         @Column
         private String apellido;
         @Column
-        private String email;
+        private String domicilio;
         @Column
         private String dni;
         @Column
@@ -43,6 +46,4 @@ import java.time.LocalDate;
         @OneToMany(mappedBy = "paciente", fetch = FetchType.LAZY)
         private Set<Turno> turnos = new HashSet<>(); */
 
-        public Paciente(){
-        }
 }

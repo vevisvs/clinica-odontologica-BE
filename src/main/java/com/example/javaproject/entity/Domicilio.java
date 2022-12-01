@@ -1,4 +1,4 @@
-package com.example.javaproject.entity;
+/*package com.example.javaproject.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,13 +19,13 @@ public class Domicilio {
     @Column
     private String localidad;
     @Column
-    private String provincia;
+    private String provincia; */
 
   /*  @OneToOne(mappedBy = "domicilio")
     private Paciente paciente; */
 
 
-    public Domicilio() {
+   /* public Domicilio() {
     }
 
-}
+} */

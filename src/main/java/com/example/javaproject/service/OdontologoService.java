@@ -22,13 +22,12 @@ public class OdontologoService {
         return or.findById(id);
     }
 
-    public void agregar(Odontologo odontologo){ //será que debe retornar un odontologo????
+    public void agregar(Odontologo odontologo){
         or.save(odontologo);
     }
 
-
     public Odontologo actualizar(Odontologo odontologo){
-        if(getByMatricula(odontologo.getId()).isPresent())
+        if(getByMatricula(odontologo.getId()).isPresent()) //getByMatricula???
             return or.save(odontologo);
         else
             return null;

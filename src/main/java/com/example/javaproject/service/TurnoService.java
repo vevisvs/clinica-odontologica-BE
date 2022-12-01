@@ -30,7 +30,7 @@ public class TurnoService {
             ps.agregar(turno.getPaciente());
             os.agregar(turno.getOdontologo());
         }
-        tr.save(turno);
+        this.tr.save(turno);
     }
 
     public Turno actualizar(Turno turno){
