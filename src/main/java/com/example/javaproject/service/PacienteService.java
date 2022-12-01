@@ -1,10 +1,10 @@
 package com.example.javaproject.service;
 
 import com.example.javaproject.entity.Paciente;
+import com.example.javaproject.exception.ResourceNotFoundException;
 import com.example.javaproject.repository.PacienteRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +38,11 @@ public class PacienteService {
     }
 
     //Eliminar paciente
-    public void eliminar(int id){
-        pr.deleteById(id);
+    public void eliminar(int id) throws ResourceNotFoundException {
+        Optional<Paciente> pacienteBuscado = getById(id);
+        if(pacienteBuscado.isPresent())
+            pr.deleteById(id);
+        else
+            throw new ResourceNotFoundException("Ingrese un id de paciente válido");
     }
 }

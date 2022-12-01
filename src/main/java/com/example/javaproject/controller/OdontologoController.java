@@ -2,10 +2,11 @@ package com.example.javaproject.controller;
 
 
 import com.example.javaproject.entity.Odontologo;
+import com.example.javaproject.exception.ResourceNotFoundException;
 import com.example.javaproject.service.OdontologoService;
 import lombok.AllArgsConstructor;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class OdontologoController {
 
-    Logger log = LogManager.getLogger();
+  /*  private final Logger log = (Logger) LoggerFactory.getLogger(OdontologoController.class); */
 
 
     private final OdontologoService odontologoService;
@@ -42,7 +43,7 @@ public class OdontologoController {
             odontologoService.agregar(odontologo);
             return new ResponseEntity<>(odontologo, HttpStatus.CREATED);
         }catch(Exception exception){
-            log.info(exception);
+            System.out.println(exception);
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
@@ -57,7 +58,7 @@ public class OdontologoController {
 
     //Eliminar odontologo (DELETE)
     @DeleteMapping("/eliminarOdontologo")
-    public ResponseEntity<?> eliminarOdontologo (@PathVariable int id) {
+    public ResponseEntity<?> eliminarOdontologo (@PathVariable int id) throws ResourceNotFoundException {
         ResponseEntity response = null;
         if (odontologoService.getByMatricula(id) == null) {
             response = new ResponseEntity(HttpStatus.NOT_FOUND);

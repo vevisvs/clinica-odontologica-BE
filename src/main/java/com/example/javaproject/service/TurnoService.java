@@ -1,9 +1,12 @@
 package com.example.javaproject.service;
 
 import com.example.javaproject.entity.Turno;
+import com.example.javaproject.exception.ResourceNotFoundException;
 import com.example.javaproject.repository.TurnoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.lang.module.ResolutionException;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +40,11 @@ public class TurnoService {
             return null;
     }
 
-    public void eliminar(int id){
-        tr.deleteById(id);
+    public void eliminar(int id) throws ResourceNotFoundException {
+      Optional<Turno> turnoBuscado = getById(id);
+      if(turnoBuscado.isPresent())
+          tr.deleteById(id);
+      else
+          throw new ResolutionException("No existe el turno seleccionado. Ingrese un id correcto");
     }
 }

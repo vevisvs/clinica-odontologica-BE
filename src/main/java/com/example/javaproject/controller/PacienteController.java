@@ -1,6 +1,7 @@
 package com.example.javaproject.controller;
 
 import com.example.javaproject.entity.Paciente;
+import com.example.javaproject.exception.ResourceNotFoundException;
 import com.example.javaproject.service.PacienteService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -47,7 +48,7 @@ public class PacienteController {
 
     //Eliminar paciente (DELETE)
     @DeleteMapping("/eliminarPaciente")
-    public ResponseEntity<?> eliminar(@PathVariable int id) {
+    public ResponseEntity<?> eliminar(@PathVariable int id) throws ResourceNotFoundException {
         ResponseEntity response = null;
         if (pacienteService.getById(id) == null) {
             response = new ResponseEntity(HttpStatus.NOT_FOUND);

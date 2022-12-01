@@ -1,6 +1,7 @@
 package com.example.javaproject.service;
 
 import com.example.javaproject.entity.Odontologo;
+import com.example.javaproject.exception.ResourceNotFoundException;
 import com.example.javaproject.repository.OdontologoRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -33,8 +34,12 @@ public class OdontologoService {
             return null;
     }
 
-    public void eliminar(int id) {
-        or.deleteById(id);
+    public void eliminar(int id) throws ResourceNotFoundException {
+        Optional<Odontologo> odontologoBuscado = getByMatricula(id);
+        if(odontologoBuscado.isPresent())
+            or.deleteById(id);
+        else
+            throw new ResourceNotFoundException("Ingrese una matricula válida");
     }
 
 }

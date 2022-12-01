@@ -1,6 +1,7 @@
 package com.example.javaproject.controller;
 
 import com.example.javaproject.entity.Turno;
+import com.example.javaproject.exception.ResourceNotFoundException;
 import com.example.javaproject.service.TurnoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +46,7 @@ public class TurnoController {
 
     //Eliminar turno (DELETE)
     @DeleteMapping("/eliminarTurno")
-    public ResponseEntity<?> eliminarTurno (@PathVariable int id) {
+    public ResponseEntity<?> eliminarTurno (@PathVariable int id) throws ResourceNotFoundException {
         ResponseEntity response = null;
         if (turnoService.getById(id) == null) {
             response = new ResponseEntity(HttpStatus.NOT_FOUND);
