@@ -1,16 +1,19 @@
 package com.example.javaproject.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
-
 
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
+
 @Table(name = "Odontologos")
+
+
+@NoArgsConstructor
+
 public class Odontologo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +33,6 @@ public class Odontologo {
     private Set<Turno> turnos = new HashSet<>(); */
 
     //hibernate necesita de un constructor vacío por defecto:
-    public Odontologo() {
-    }
+
 }
 
